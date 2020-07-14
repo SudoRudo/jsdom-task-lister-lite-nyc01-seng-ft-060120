@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // let submitButton = document.getElementById('button');
 const ourForm = document.getElementById('create-task-form');
 const tasks = document.getElementById('tasks');
+const submitButton = document.getElementById('button');
 
 let selector = document.createElement('SELECT');
 selector.setAttribute("id", "selector");
@@ -24,8 +25,7 @@ green.setAttribute("value", "green");
 green.innerHTML = "Low Priority";
 selector.appendChild(green);
 
-ourForm.appendChild(selector);
-
+submitButton.insertAdjacentElement('beforebegin', selector);
 
 let i = 0;
 
@@ -36,20 +36,22 @@ ourForm.addEventListener("submit", function(e){
 
   let deleteButton = document.createElement('BUTTON');
   deleteButton.innerHTML = "Delete";
-  deleteButton.className = `delete ${i}`;
+  deleteButton.className = `${i}`;
   i++;
   
   newTaskLi.innerHTML = ourForm.elements[0].value + ' ';
   newTaskLi.appendChild(deleteButton);
+  newTaskLi.style.color = ourForm.elements[1].value
   tasks.appendChild(newTaskLi);
 })
 
-document.addEventListener("click", function(e){
-  let clickedDeleteButton = document.getElementsByClassName(e.target.className)
+// document.getElementsByTagName('BUTTON').addEventListener("click", function(e){
+  let clickedDeleteButton = document.getElementsByClassName(e.target.className)[className]
   clickedDeleteButton.addEventListener("click", function(e){
-    liTask = clickedDeleteButton.parent
+    liTask = clickedDeleteButton.parentNode
+    liTask.remove
   
   })
   
   
-})
+// })
